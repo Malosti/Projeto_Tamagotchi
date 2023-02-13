@@ -23,9 +23,14 @@ namespace Tamagotchi
             var response = client.Execute(request);
             var infoPokemon = JsonSerializer.Deserialize<Pokemon>(response.Content);
 
-            Console.WriteLine($"Nome do Pokemon: {infoPokemon.name.ToUpper()}");
+            Console.WriteLine($"Nome Pokemon: {infoPokemon.name.ToUpper()}");
             Console.WriteLine($"Altura: {infoPokemon.height} m");
-            Console.WriteLine($"Peso: {infoPokemon.weight} Kg");
+            Console.WriteLine($"Peso: {infoPokemon.weight} Kg \n");
+            Console.WriteLine("Habilidades:");
+            foreach (var item in infoPokemon.abilities)
+            {
+                Console.WriteLine(item.ability.name);
+            }
                        
         }
     }
