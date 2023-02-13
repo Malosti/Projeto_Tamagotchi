@@ -18,16 +18,16 @@ namespace Tamagotchi
             Console.ReadKey();
             Console.Clear();
 
-            var client = new RestClient("https://pokeapi.co/api/v2/pokemon/");
-            var request = new RestRequest($"{option}", Method.Get);
-            var response = client.Execute(request);
-            var infoPokemon = JsonSerializer.Deserialize<Pokemon>(response.Content);
+            var escolhaUsuario = new PokemonService();
 
-            Console.WriteLine($"Nome Pokemon: {infoPokemon.name.ToUpper()}");
-            Console.WriteLine($"Altura: {infoPokemon.height} m");
-            Console.WriteLine($"Peso: {infoPokemon.weight} Kg \n");
+            var pokemon = escolhaUsuario.EscolhaPokemon(option);
+
+            Console.WriteLine($"Nome Pokemon: {pokemon.name}");
+            Console.WriteLine($"Altura: {pokemon.height} m");
+            Console.WriteLine($"Peso: {pokemon.weight} Kg \n");
             Console.WriteLine("Habilidades:");
-            foreach (var item in infoPokemon.abilities)
+
+            foreach (var item in pokemon.abilities)
             {
                 Console.WriteLine(item.ability.name);
             }
