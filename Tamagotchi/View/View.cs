@@ -17,6 +17,7 @@ namespace Tamagotchi
 
         public void MenuOpcaoUsuario(string nomeUsuario)
         {
+            Console.Clear();
             Console.WriteLine($"{nomeUsuario}, o que deseja fazer? ");
             Console.WriteLine();
             Console.WriteLine("1 - ADOTAR MASCOTE");

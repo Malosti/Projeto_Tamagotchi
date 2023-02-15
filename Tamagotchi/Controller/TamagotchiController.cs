@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Tamagotchi.Controller
@@ -7,10 +8,13 @@ namespace Tamagotchi.Controller
     {
         public int PokemonEscolhido { get; set; }
         public string NomeUsuario { get; set; }
-        public TamagotchiController(string _nomeUsuario, int _pokemonEscolhido)
+        public List<Pokemon> pokemons { get; set; }
+
+        public TamagotchiController(string _nomeUsuario, int _pokemonEscolhido, List<Pokemon> _pokemons)
         {
             PokemonEscolhido = _pokemonEscolhido;
             NomeUsuario = _nomeUsuario;
+            pokemons = _pokemons;
         }
         public Pokemon AdotarMascote()
         {
@@ -42,15 +46,18 @@ namespace Tamagotchi.Controller
                             Console.WriteLine(item.ability.name);
                         }
                         Console.WriteLine();
+                        Console.ReadKey();
                         break;
                     }
                 case 2:
                     {
+                        AddMascoteLista(pokemon);
                         Console.WriteLine($"{NomeUsuario} mascote adotado com sucesso, o ovo está chocando");
+                        Console.ReadKey();
                         break;
                     }
 
-                case 3: telaJogo.MenuOpcaoUsuario(NomeUsuario); break;
+                case 3: Console.Clear(); break;
 
                 default:
                     {
@@ -61,6 +68,11 @@ namespace Tamagotchi.Controller
                         break;
                     }
             }
+        }
+
+        public void AddMascoteLista(Pokemon pokemon)
+        {
+            pokemons.Add(pokemon);
         }
 
 
