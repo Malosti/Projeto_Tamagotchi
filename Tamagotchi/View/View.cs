@@ -40,7 +40,7 @@ namespace Tamagotchi
         public void MenuEscolherPokemon(string nomeUsuario)
         {
             Console.Clear();
-            Console.WriteLine("========= ADOTAR POKÉMON ========= \n\n");
+            Console.WriteLine("========= ADOTAR POKÉMON ========= \n");
             Console.WriteLine($"{nomeUsuario}, escolha uma espécie: ");
             Console.WriteLine();
             Console.WriteLine("1 - Bulbasaur");

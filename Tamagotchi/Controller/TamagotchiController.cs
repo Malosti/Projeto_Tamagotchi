@@ -6,9 +6,9 @@ namespace Tamagotchi.Controller
 {
     class TamagotchiController
     {
-        public int PokemonEscolhido { get; set; }
-        public string NomeUsuario { get; set; }
-        public List<Pokemon> pokemons { get; set; }
+        private int PokemonEscolhido { get; set; }
+        private string NomeUsuario { get; set; }
+        private List<Pokemon> pokemons { get; set; }
 
         public TamagotchiController(string _nomeUsuario, int _pokemonEscolhido, List<Pokemon> _pokemons)
         {
@@ -24,7 +24,7 @@ namespace Tamagotchi.Controller
             return pokemon;
         }
 
-        public void AdocaoPokemon(Pokemon pokemon)
+        private void AdocaoPokemon(Pokemon pokemon)
         {
             var telaJogo = new View();
             telaJogo.MenuAdocaoPokemon(pokemon, NomeUsuario);
@@ -70,11 +70,10 @@ namespace Tamagotchi.Controller
             }
         }
 
-        public void AddMascoteLista(Pokemon pokemon)
+        private void AddMascoteLista(Pokemon pokemon)
         {
             pokemons.Add(pokemon);
         }
-
 
     }
 }
