@@ -27,7 +27,7 @@ namespace Tamagotchi.Controller
         private void AdocaoPokemon(Pokemon pokemon)
         {
             var telaJogo = new View();
-            telaJogo.MenuAdocaoPokemon(pokemon, NomeUsuario);
+            View.MenuAdocaoPokemon(pokemon, NomeUsuario);
             var escolhaFuncaoPokemon = int.Parse(Console.ReadLine());
 
             switch (escolhaFuncaoPokemon)
@@ -35,18 +35,7 @@ namespace Tamagotchi.Controller
 
                 case 1:
                     {
-                        Console.Clear();
-                        Console.WriteLine($"Nome Pokemon: {pokemon.name}");
-                        Console.WriteLine($"Altura: {pokemon.height} m");
-                        Console.WriteLine($"Peso: {pokemon.weight} Kg \n");
-                        Console.WriteLine("Habilidades:");
-
-                        foreach (var item in pokemon.abilities)
-                        {
-                            Console.WriteLine(item.ability.name);
-                        }
-                        Console.WriteLine();
-                        Console.ReadKey();
+                        View.EstatisticaMascote(pokemon);
                         break;
                     }
                 case 2:
@@ -64,7 +53,7 @@ namespace Tamagotchi.Controller
                         Console.WriteLine("Por favor, digite uma opção válida!");
                         Thread.Sleep(1500);
                         Console.Clear();
-                        telaJogo.MenuOpcaoUsuario(NomeUsuario);
+                        View.MenuOpcaoUsuario(NomeUsuario);
                         break;
                     }
             }
@@ -73,6 +62,31 @@ namespace Tamagotchi.Controller
         private void AddMascoteLista(Pokemon pokemon)
         {
             pokemons.Add(pokemon);
+        }
+
+        public void InteracoesPokemon(string _nomeUsuario, string opcaoUsuario, Pokemon pokemon)
+        {
+
+            Console.WriteLine($"{_nomeUsuario} qual o que deseja fazer? ");
+            Console.WriteLine($" 1 - Alimentar o ");
+            Console.WriteLine($" 2 - Brincar com o ");
+            Console.WriteLine($" 3 - Colocar o para dormir");
+            Console.WriteLine($" 4 - Voltar");
+            var opcao = int.Parse(Console.ReadLine());
+
+            switch (opcao)
+            {
+                case 1: pokemon.AlimentarMascote(); break;
+
+                case 2: pokemon.BrincarMascote(); break;
+
+                case 3: pokemon.DescansarMascote(); break;
+
+                case 4: View.MenuOpcaoUsuario(_nomeUsuario); break;
+
+                default: InteracoesPokemon(_nomeUsuario, opcaoUsuario, pokemon); break;
+            }
+
         }
 
     }

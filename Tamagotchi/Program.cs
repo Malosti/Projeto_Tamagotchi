@@ -10,19 +10,18 @@ namespace Tamagotchi
         static void Main(string[] args)
         {
             var listaPokemons = new List<Pokemon>();
-            var telasJogo = new View();
             var jogar = 1;
-            var nomeUsuario = telasJogo.MenuInicial();
+            var nomeUsuario = View.MenuInicial();
 
             while (jogar == 1)
             {
-                telasJogo.MenuOpcaoUsuario(nomeUsuario);
+                View.MenuOpcaoUsuario(nomeUsuario);
                 var opcao = int.Parse(Console.ReadLine());
                 switch (opcao)
                 {
                     case 1:
                         {
-                            telasJogo.MenuEscolherPokemon(nomeUsuario);
+                            View.MenuEscolherPokemon(nomeUsuario);
                             var pokemonEscolhido = int.Parse(Console.ReadLine());
                             if (pokemonEscolhido == 1 || pokemonEscolhido == 4 || pokemonEscolhido == 7)
                             {
@@ -41,12 +40,7 @@ namespace Tamagotchi
 
                     case 2:
                         {
-                            Console.Clear();
-                            Console.WriteLine("Lista de Pokemons");
-                            foreach (var item in listaPokemons)
-                            {
-                                Console.WriteLine($" - {item.name}");
-                            }
+                            View.ListaMascotes(nomeUsuario, listaPokemons);
                             Console.ReadKey();
                             break;
                         }

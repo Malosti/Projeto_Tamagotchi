@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tamagotchi
 {
     public class View
     {
-        public string MenuInicial()
+        public static string MenuInicial()
         {
             Console.WriteLine("=========== TAMAGOTCHI ===========");
             Console.WriteLine("       Olá, seja bem vindo!!!     ");
@@ -15,7 +16,7 @@ namespace Tamagotchi
             return nomeUsuario;
         }
 
-        public void MenuOpcaoUsuario(string nomeUsuario)
+        public static void MenuOpcaoUsuario(string nomeUsuario)
         {
             Console.Clear();
             Console.WriteLine($"{nomeUsuario}, o que deseja fazer? ");
@@ -26,7 +27,7 @@ namespace Tamagotchi
             Console.WriteLine();
         }
 
-        public void MenuAdocaoPokemon(Pokemon pokemon, string nomeUsuario)
+        public static void MenuAdocaoPokemon(Pokemon pokemon, string nomeUsuario)
         {
             Console.Clear();
             Console.WriteLine($"{nomeUsuario}, você deseja:");
@@ -37,7 +38,7 @@ namespace Tamagotchi
 
         }
 
-        public void MenuEscolherPokemon(string nomeUsuario)
+        public static void MenuEscolherPokemon(string nomeUsuario)
         {
             Console.Clear();
             Console.WriteLine("========= ADOTAR POKÉMON ========= \n");
@@ -48,5 +49,53 @@ namespace Tamagotchi
             Console.WriteLine("7 - Squirtle");
             Console.WriteLine();
         }
+
+        public static void EstatisticaMascote(Pokemon pokemon)
+        {
+            Console.Clear();
+            Console.WriteLine(" ======== Dados Pessoais ======== ");
+            Console.WriteLine($" - Nome Pokemon: {pokemon.name.ToUpper()}");
+            Console.WriteLine($" - Altura: {pokemon.height} m");
+            Console.WriteLine($" - Peso: {pokemon.weight} Kg \n");
+            Console.WriteLine(" ========= Necessidades ========= ");
+
+            if(pokemon.VerificaFome() == true)
+                Console.WriteLine(" O Pokémon está com fome");
+            else
+                Console.WriteLine(" O Pokémon está alimentado");
+
+            if(pokemon.VerificaDescanso() ==  true)
+                Console.WriteLine(" O Pokémon está com sono");
+            else
+                Console.WriteLine(" O Pokémon está descansado");
+
+            if(pokemon.VerificaHumor() == true)
+                Console.WriteLine(" O Pokémon quer brincar");
+            else
+                Console.WriteLine(" O Pokémon está feliz");
+
+            Console.WriteLine(" ========== Habilidades ========= ");
+            foreach (var item in pokemon.abilities)
+            {
+                Console.WriteLine($" - {item.ability.name.ToUpper()}");
+            }
+            Console.WriteLine();
+            Console.ReadKey();
+        }
+
+        public static int ListaMascotes(string nomeUsuario, List<Pokemon> pokemons)
+        {
+            Console.Clear();
+            Console.WriteLine(" ========== Lista de Pokemons ========== \n ");
+            Console.WriteLine($"{nomeUsuario}, você possui {pokemons.Count} Pokémons \n");
+            foreach (var item in pokemons)
+            {
+                Console.WriteLine($" - {item.name.ToUpper()}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Com qual deseja interagir ? ");
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
     }
 }
